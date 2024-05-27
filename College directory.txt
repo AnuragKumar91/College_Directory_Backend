@@ -1,0 +1,13 @@
+
+25-05-2024
+1-Working on College Directory
+2-Setup backend folder structure
+3-Create CRUD functionality for Region,Country,State,City and loyality
+-Create API for Region,Country,State,City and loyality
+
+
+27-05-2024
+1-Working on College Directory backend
+2-Apply logic for create ,get and getbyId for Region,Country,State,City and loyality
+3-Hit the api for all create ,get and getbyId on postman it is working perfectely
+
