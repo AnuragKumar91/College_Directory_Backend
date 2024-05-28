@@ -11,3 +11,9 @@
 2-Apply logic for create ,get and getbyId for Region,Country,State,City and loyality
 3-Hit the api for all create ,get and getbyId on postman it is working perfectely
 
+28-05-2024
+1-Working on College Directory backend
+2-Change some logic in update and delete for all Region,Country,State,City and loyality
+3-Read about jwt token ,authentication and authorizations which is used in our project in the upcoming days
+4-Create schema for signup and login also
+5-Pending work -----Admin Panel 

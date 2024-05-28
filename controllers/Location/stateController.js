@@ -1,20 +1,20 @@
 const { json } = require("body-parser");
 const Data = require("../../modals/LocationModal/state");
-const Country=require("../../modals/LocationModal/country")
-const Region=require("../../modals/LocationModal/region")
+const Country = require("../../modals/LocationModal/country");
+const Region = require("../../modals/LocationModal/region");
 
+exports.CreateState = async (req, res) => {
+  try {
+    const { statename, countryId, regionId } = req.body;
 
-exports.CreateState=async(req,res)=>{
-    try{
-       const{statename,countryId,regionId}=req.body
+    // Validate that the country exists
 
-        // Validate that the country exists
     const country = await Country.findById(countryId);
     if (!country) {
       return res.status(500).json({
-        statuscode:500,
+        statuscode: 500,
         success: false,
-        message: 'Country not found'
+        message: "Country not found",
       });
     }
 
@@ -22,9 +22,9 @@ exports.CreateState=async(req,res)=>{
     const region = await Region.findById(regionId);
     if (!region) {
       return res.status(500).json({
-        statuscode:500,
+        statuscode: 500,
         success: false,
-        message: 'Region not found'
+        message: "Region not found",
       });
     }
 
@@ -32,151 +32,125 @@ exports.CreateState=async(req,res)=>{
     const savedState = await state.save();
 
     res.status(200).json({
-      statuscode:200,
+      statuscode: 200,
       success: true,
       data: savedState,
-      message: 'State created successfully'
+      message: "State created successfully",
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      statuscode:500,
+      statuscode: 500,
       success: false,
-      message:[],
-      error: error.message
+      message: [],
+      error: error.message,
     });
   }
 };
 
-    exports.GetStateData= async(req,res)=>{ 
-        try{
-            const StateData= await Data.find({}).populate('region')
-            .populate({
-              path: 'country',
-              
-            });
-             //response 
-      res.status(200).json(
-        {    statuscode:200,
-            success:true,
-            response:StateData,
-            message:"Entire State data is Fetch"
-        }
-      )
-        }
-        catch(err){
-        console.error(err)
-        console.log(err)
-        res.status(500).json(
-    
-            {    statuscode:200,
-                success:false,
-                data:[],
-                message:err.message
-    
-            }
-        )
-    
-    
+exports.GetStateData = async (req, res) => {
+  try {
+    const StateData = await Data.find({}).populate("region").populate({
+      path: "country",
+    });
+    //response
+    res
+      .status(200)
+      .json({
+        statuscode: 200,
+        success: true,
+        response: StateData,
+        message: "Entire State data is Fetch",
+      });
+  } catch (err) {
+    console.error(err);
+    console.log(err);
+    res
+      .status(500)
+      .json({
+        statuscode: 200,
+        success: false,
+        data: [],
+        message: err.message,
+      });
+  }
+};
+
+exports.GetStateDataBYID = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const stateDataById = await Data.findById(id).populate("region").populate({
+      path: "country",
+    });
+    if (!stateDataById) {
+      return res.status(500).json({
+        statuscode: 500,
+        success: false,
+        messgae: "no data find ny given id",
+      });
     }
-    
-    }
-    
-    exports.GetStateDataBYID =async(req,res)=>{
-        try{
-            const id=req.params.id;
-            const stateDataById = await Data.findById(id)
-            .populate('region')
-            .populate({
-              path: 'country',
-             
-            });
-            if(!stateDataById){
-                return res.status(500).json(
-                    {
-                      statuscode:500,
-                        success:false,
-                        messgae:"no data find ny given id"
-                    }
-                )
-            }
-            //data for given id found
-            res.status(200).json(
-                {
-                  statuscode:200,
-                    success:true,
-                    data:stateDataById,
-                    message:`${id} data successfully get`
-                }
-            )
-    
-    
-        }catch(err){
-          console.error(err)
-          console.log(err)
-          res.status(500).json({
-            statuscode:200,
-            success:false,
-            data:[],
-            message:err.message
-          })
-        }
-    }
-      
+    //data for given id found
+    res.status(200).json({
+      statuscode: 200,
+      success: true,
+      data: stateDataById,
+      message: `${id} data successfully get`,
+    });
+  } catch (err) {
+    console.error(err);
+    console.log(err);
+    res.status(500).json({
+      statuscode: 200,
+      success: false,
+      data: [],
+      message: err.message,
+    });
+  }
+};
 
+exports.StateUpdate = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { statename } = req.body;
+    const stateupdate = await Data.findByIdAndUpdate(
+      { _id: id },
+      { statename }
+    );
+    res.status(200).json({
+      statuscode: 200,
+      success: true,
+      data: stateupdate,
+      message: "Updated Successfully ",
+    });
+  } catch (err) {
+    console.error(err);
+    console.log(err);
+    res.status(500).json({
+      statuscode: 500,
+      success: false,
+      data: [],
+      message: err.message,
+    });
+  }
+};
 
-
-
-
-
-
-    
-    exports.StateUpdate=async(req,res)=>{
-        try{
-            const {id}=req.params
-            const {statename}=req.body
-            const stateupdate=await Data.findByIdAndUpdate(
-                {_id:id},
-                {statename}
-            )
-            res.status(200).json({
-              statuscode:200,
-                success:true,
-                data:stateupdate,
-                message:"Updated Successfully "
-            })
-        }
-        catch(err){
-    
-            console.error(err)
-          console.log(err)
-          res.status(500).json({
-            statuscode:500,
-            success:false,
-            data:[],
-            message:err.message
-          })
-        }
-    }
-    
-    exports.StateDelete=async(req,res)=>{
-        try{
-             const{id}=req.params
-             await Data.findByIdAndDelete(id)
-             res.status(200).json({
-              statuscode:200,
-                success:true,
-                message:"Region Data deleted",
-            })
-        
-        }catch(err){
-            console.error(err)
-            console.log(err)
-            res.status(500).json({
-              statuscode:500,
-              success:false,
-              data:[],
-              message:err.message
-            })
-        }
-        }
+exports.StateDelete = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Data.findByIdAndDelete(id);
+    res.status(200).json({
+      statuscode: 200,
+      success: true,
+      message: "Region Data deleted",
+    });
+  } catch (err) {
+    console.error(err);
+    console.log(err);
+    res.status(500).json({
+      statuscode: 500,
+      success: false,
+      data: [],
+      message: err.message,
+    });
+  }
+};

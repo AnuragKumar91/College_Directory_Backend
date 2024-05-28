@@ -1,19 +1,17 @@
-const mongoose =require("mongoose")
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-
-
 
 const countrySchema = new Schema({
   countryname: {
     type: String,
-    required: true
+    required: true,
   },
   region: {
     type: Schema.Types.ObjectId,
-    ref: 'region',
-    required: true
-  }
+    ref: "region",
+    required: true,
+  },
 });
-    
-module.exports=mongoose.model("country",countrySchema)
+
+module.exports = mongoose.model("country", countrySchema);

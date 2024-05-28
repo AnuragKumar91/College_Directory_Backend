@@ -52,7 +52,8 @@ return res.status(200).json({
 exports.Login=async(req,res)=>{
     try{
 
-        //data fetch 
+        //data fetch
+
         const{email,password}=req.body
 
         //validation on email and password
@@ -85,15 +86,15 @@ exports.Login=async(req,res)=>{
         //verify password and generate a JSW Token
         if(await bcrypt.compare(password,user.password)){
            let token =jwt.sign(payload,process.env.JWT_SECRET,{
-            expiresIn:"2h"
+           
            });
-           user.toekn=token;
+           user.token=token;
            user.password=undefined;
  const options={
 expires: new Date(Date.now()+3 *24 *60 *60 *100),
 httOnly:true,
  }
-res.cookie("token",token,options).status(200).json({
+res.cookie("anuragcookie",token,options).status(200).json({
     success:true,
     token,
     user,
