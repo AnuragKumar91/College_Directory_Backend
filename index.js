@@ -23,10 +23,10 @@ app.get('/', (req, res) => {
   res.send('Hello Server');
 });
 //Mount our routes
-app.use('/admin', RegionRoutes);
-app.use('/admin', CountryRoutes);
-app.use('/admin', StateRoutes);
-app.use('/admin', CityRoutes);
-app.use('/admin',LocalityRoutes)
-app.use('/admin',UserRoutes)
+app.use('/api', RegionRoutes);
+app.use('/api', CountryRoutes);
+app.use('/api', StateRoutes);
+app.use('/api', CityRoutes);
+app.use('/api',LocalityRoutes)
+app.use('/api',UserRoutes)
 

@@ -5,7 +5,7 @@ const router=express.Router()
 const {CreateState,GetStateData,GetStateDataBYID,StateUpdate,StateDelete}=require("../../controllers/Location/stateController")
 
 
-router.post("/statedata",CreateState)
+router.post("/createstatedata",CreateState)
 router.get('/getstatedata', GetStateData);
 router.get("/getstatedataid/:id",GetStateDataBYID)
 router.put("/stateupdate/:id",StateUpdate)

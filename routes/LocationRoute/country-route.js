@@ -9,7 +9,7 @@ const {
   CountryDelete,
 } = require("../../controllers/Location/countryController");
 
-router.post("/countrydata", CreateCountry);
+router.post("/createcountrydata", CreateCountry);
 router.get("/getcountrydata", GetCountryData);
 router.get("/getcountrydataid/:id", GetCountryDataBYID);
 router.put("/countryupdate/:id", CountryUpdate);

@@ -5,7 +5,7 @@ const router = express.Router();
 const { CreateRegion,GetRegionData,GetRegionDataBYID ,RegionUpdate,RegionDelete} = require('../../controllers/Location/regionController');
 
 // Define API route
-router.post('/regiondata', CreateRegion);
+router.post('/createregiondata', CreateRegion);
 router.get('/getregiondata', GetRegionData);
 router.get("/getregiondataid/:id",GetRegionDataBYID)
 router.put("/regionupdate/:id",RegionUpdate)

@@ -5,7 +5,7 @@ const router=express.Router()
 const {CreateCity,GetCityData,GetCityDataBYID,CityUpdate,CityDelete}=require("../../controllers/Location/cityController")
 
 
-router.post("/citydata",CreateCity);
+router.post("/createcitydata",CreateCity);
 router.get("/getcitydata", GetCityData);
 router.get("/getcitydataid/:id",GetCityDataBYID)
 router.put("/cityupdate/:id",CityUpdate)

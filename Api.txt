@@ -1,13 +1,110 @@
 ################################
 LOGIN
 ################################
-ROUTE - 
+ROUTE - /api/login
+
 Parameter--
-	email-string
-	password-string
+	email-string ,required
+	password-string  ,required
+
 
 ###############################
 REGISTER
 ###############################
-ROUTE
-Paramenter--
+ROUTE-/api/signup
+
+Parameter--
+name-string ,required
+email-string ,required
+password-string,required
+role-string,required
+
+###############################
+Location 
+###############################
+
+Region 
+
+Route
+##################
+Create -/api/createregiondata
+Get/Fetch Data-/api/getregiondata
+Get/Fetch Data by Id-/api/getregiondataid/:id
+Update - /api/regionupdate/:id
+Delete -/api/regiondelete/:id
+
+Parameter -
+regionname -string,required
+
+##################
+Country 
+
+Route
+##################
+Create -/api/createcountrydata
+Get/Fetch Data-/api/getcountrydata
+Get/Fetch Data by Id-/api/getcountryid/:id
+Update - /api/countryupdate/:id
+Delete -/api/countrydelete/:id
+
+Parameter -
+countryname -string,required
+regionid- objectid,required
+
+##################
+State 
+
+Route
+##################
+Create -/api/createstatedata
+Get/Fetch Data-/api/getstatedata
+Get/Fetch Data by Id-/api/getstateid/:id
+Update - /api/stateupdate/:id
+Delete -/api/statedelete/:id
+
+Paramter -
+statename -string,required
+countryid- objectid,required
+regionid- objectid,required
+
+
+
+##################
+City 
+
+Route
+##################
+Create -/api/createcitydata
+Get/Fetch Data-/api/getcitydata
+Get/Fetch Data by Id-/api/getcityid/:id
+Update - /api/cityupdate/:id
+Delete -/api/citydelete/:id
+
+Parameter -
+cityname -string,required
+stateid-objectid,required
+countryid- objectid,required
+regionid- objectid,required
+
+
+##################
+Locality   
+
+Route
+##################
+Create -/api/createlocalitydata
+Get/Fetch Data-/api/getlocalitydata
+Get/Fetch Data by Id-/api/getlocalityid/:id
+Update - /api/localityupdate/:id
+Delete -/api/localitydelete/:id
+
+Parameter -
+localityname -string,required
+cityid-objectid,required
+stateid-objectid,required
+countryid- objectid,required
+regionid- objectid,required
+
+
+
+

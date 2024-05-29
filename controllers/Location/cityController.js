@@ -50,7 +50,7 @@ exports.CreateCity = async (req, res) => {
       statuscode: 200,
       success: true,
       data: savedCity,
-      message: "State created successfully",
+      message: "City created successfully",
     });
   } catch (error) {
     console.error(error);
