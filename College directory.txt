@@ -17,3 +17,15 @@
 3-Read about jwt token ,authentication and authorizations which is used in our project in the upcoming days
 4-Create schema for signup and login also
 5-Pending work -----Admin Panel 
+
+
+30-05-2024
+1-Working on admin panel 
+2-Create register page ,login page ,forget page 
+3- Connect to the backend also 
+4- Register succesfully on my db from admin panel
+5-Login also succesfully 
+6-Working on forget password 
+7-Create api for forget password 
+8-hit their api on thunder client 
+9- Create reset link and dispaly on console  as well as gmail
