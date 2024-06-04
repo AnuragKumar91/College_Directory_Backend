@@ -1,7 +1,9 @@
 ################################
 LOGIN
+
+base_url = https://college-directory-backend.onrender.com
 ################################
-ROUTE - /api/login
+ROUTE - base_url/api/login
 
 Parameter--
 	email-string ,required
@@ -11,7 +13,7 @@ Parameter--
 ###############################
 REGISTER
 ###############################
-ROUTE-/api/signup
+ROUTE-base_url/api/signup
 
 Parameter--
 name-string ,required
@@ -27,11 +29,11 @@ Region
 
 Route
 ##################
-Create -/api/createregiondata
-Get/Fetch Data-/api/getregiondata
-Get/Fetch Data by Id-/api/getregiondataid/:id
-Update - /api/regionupdate/:id
-Delete -/api/regiondelete/:id
+Create -base_url/api/createregiondata
+Get/Fetch Data-base_url/api/getregiondata
+Get/Fetch Data by Id-base_url/api/getregiondataid/:id
+Update - base_url/api/regionupdate/:id
+Delete -base_url/api/regiondelete/:id
 
 Parameter -
 regionname -string,required
@@ -41,11 +43,11 @@ Country
 
 Route
 ##################
-Create -/api/createcountrydata
-Get/Fetch Data-/api/getcountrydata
-Get/Fetch Data by Id-/api/getcountryid/:id
-Update - /api/countryupdate/:id
-Delete -/api/countrydelete/:id
+Create -base_url/api/createcountrydata
+Get/Fetch Data-base_url/api/getcountrydata
+Get/Fetch Data by Id-base_url/api/getcountryid/:id
+Update - base_url/api/countryupdate/:id
+Delete -base_url/api/countrydelete/:id
 
 Parameter -
 countryname -string,required
@@ -56,11 +58,11 @@ State
 
 Route
 ##################
-Create -/api/createstatedata
-Get/Fetch Data-/api/getstatedata
-Get/Fetch Data by Id-/api/getstateid/:id
-Update - /api/stateupdate/:id
-Delete -/api/statedelete/:id
+Create -base_url/api/createstatedata
+Get/Fetch Data-base_url/api/getstatedata
+Get/Fetch Data by Id-base_url/api/getstateid/:id
+Update - base_url/api/stateupdate/:id
+Delete -base_url/api/statedelete/:id
 
 Paramter -
 statename -string,required
@@ -74,11 +76,11 @@ City
 
 Route
 ##################
-Create -/api/createcitydata
-Get/Fetch Data-/api/getcitydata
-Get/Fetch Data by Id-/api/getcityid/:id
-Update - /api/cityupdate/:id
-Delete -/api/citydelete/:id
+Create -base_url/api/createcitydata
+Get/Fetch Data-base_url/api/getcitydata
+Get/Fetch Data by Id-base_url/api/getcityid/:id
+Update -base_url /api/cityupdate/:id
+Delete -base_url/api/citydelete/:id
 
 Parameter -
 cityname -string,required
@@ -92,11 +94,11 @@ Locality
 
 Route
 ##################
-Create -/api/createlocalitydata
-Get/Fetch Data-/api/getlocalitydata
-Get/Fetch Data by Id-/api/getlocalityid/:id
-Update - /api/localityupdate/:id
-Delete -/api/localitydelete/:id
+Create -base_url/api/createlocalitydata
+Get/Fetch Data-base_url/api/getlocalitydata
+Get/Fetch Data by Id-base_url/api/getlocalityid/:id
+Update - base_url/api/localityupdate/:id
+Delete -base_url/api/localitydelete/:id
 
 Parameter -
 localityname -string,required
