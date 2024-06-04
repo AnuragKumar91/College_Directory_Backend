@@ -76,6 +76,16 @@ exports.GetStateData = async (req, res) => {
   }
 };
 
+exports.GetStateDatabyCountryId = async (req, res) => {
+  try {
+    const { countryId } = req.params;
+    const states = await Data.find({ country: countryId });
+    res.json({ success: true, state: states });
+  } catch (error) {
+    console.error("Error fetching countries:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+}
 exports.GetStateDataBYID = async (req, res) => {
   try {
     const id = req.params.id;

@@ -4,6 +4,14 @@ const Data = require("../../modals/LocationModal/region");
 exports.CreateRegion = async (req, res) => {
   try {
     const { regionname } = req.body;
+      
+  if (!regionname || !regionname.trim()) {
+    return res.status(400).json({
+      statuscode: 400,
+      success: false,
+      message: 'Region name cannot be empty',
+    });
+  }
     const response = await Data.create({
       regionname,
     });

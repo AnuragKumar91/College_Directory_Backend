@@ -5,10 +5,11 @@ const Region = require("../../modals/LocationModal/region");
 exports.CreateCountry = async (req, res) => {
   try {
     const { countryname, regionId } = req.body;
+
     // Validate that the region exists
     const region = await Region.findById(regionId);
     if (!region) {
-      return res.status().json({
+      return res.status(500).json({
         statuscode: 500,
         success: false,
         message: "Region not found",
@@ -27,15 +28,15 @@ exports.CreateCountry = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status().json({
+    res.status(500).json({
       statuscode: 500,
       success: false,
-
       data: [],
       message: error.message,
     });
   }
 };
+
 
 exports.GetCountryData = async (req, res) => {
   try {
@@ -58,6 +59,16 @@ exports.GetCountryData = async (req, res) => {
     });
   }
 };
+exports.GetCountryDatabyRegionId = async (req, res) => {
+  try {
+    const { regionId } = req.params;
+    const countries = await Data.find({ region: regionId });
+    res.json({ success: true, countries: countries });
+  } catch (error) {
+    console.error("Error fetching countries:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+}
 
 exports.GetCountryDataBYID = async (req, res) => {
   try {

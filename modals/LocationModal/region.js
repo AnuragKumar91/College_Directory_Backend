@@ -2,7 +2,8 @@ const mongoose=require("mongoose");
 
 const dataSchema=new mongoose.Schema({
     regionname:{
-    type:String
+    type:String,
+    required: true,
     },
    
 });
