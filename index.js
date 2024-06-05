@@ -28,9 +28,9 @@ app.listen(PORT, () => {
 const dbConnect = require("./config/database");
 dbConnect();
 // Default route
-// app.get("/", (req, res) => {
-//   res.send("Hello Server");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello Server");
+});
 //Mount our routes
 app.use("/region", RegionRoutes);
 app.use("/country", CountryRoutes);

@@ -18,12 +18,12 @@ exports.CreateCountry = async (req, res) => {
     }
 
     const country = new Data({ countryname, region: regionId });
-    const savedCountry = await country.save();
+    const response = await country.save();
 
     res.status(200).json({
       statuscode: 200,
       success: true,
-      data: savedCountry,
+      data: response,
       message: "Country created successfully",
     });
   } catch (error) {
@@ -40,12 +40,12 @@ exports.CreateCountry = async (req, res) => {
 
 exports.GetCountryData = async (req, res) => {
   try {
-    const CountryData = await Data.find({}).populate("region");
+    const response = await Data.find({}).populate("region");
     //response
     res.status(200).json({
       statuscode: 200,
       success: true,
-      response: CountryData,
+      data: response,
       message: "Entire Country data is Fetch",
     });
   } catch (err) {
