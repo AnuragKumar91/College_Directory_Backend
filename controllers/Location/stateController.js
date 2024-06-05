@@ -54,25 +54,21 @@ exports.GetStateData = async (req, res) => {
       path: "country",
     });
     //response
-    res
-      .status(200)
-      .json({
-        statuscode: 200,
-        success: true,
-        response: StateData,
-        message: "Entire State data is Fetch",
-      });
+    res.status(200).json({
+      statuscode: 200,
+      success: true,
+      response: StateData,
+      message: "Entire State data is Fetch",
+    });
   } catch (err) {
     console.error(err);
     console.log(err);
-    res
-      .status(500)
-      .json({
-        statuscode: 200,
-        success: false,
-        data: [],
-        message: err.message,
-      });
+    res.status(500).json({
+      statuscode: 200,
+      success: false,
+      data: [],
+      message: err.message,
+    });
   }
 };
 
@@ -85,7 +81,8 @@ exports.GetStateDatabyCountryId = async (req, res) => {
     console.error("Error fetching countries:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
-}
+};
+
 exports.GetStateDataBYID = async (req, res) => {
   try {
     const id = req.params.id;

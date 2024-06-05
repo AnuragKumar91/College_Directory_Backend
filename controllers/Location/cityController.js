@@ -74,52 +74,66 @@ exports.GetCityData = async (req, res) => {
         path: "state",
       });
     //response
-    res
-      .status(200)
-      .json({
-        statuscode: 200,
-        success: true,
-        response: CityData,
-        message: "Entire State data is Fetch",
-      });
+    res.status(200).json({
+      statuscode: 200,
+      success: true,
+      response: CityData,
+      message: "Entire State data is Fetch",
+    });
   } catch (err) {
     console.error(err);
     console.log(err);
-    res
-      .status(500)
-      .json({
-        statuscode: 500,
-        success: false,
-        data: [],
-        message: err.message,
-      });
+    res.status(500).json({
+      statuscode: 500,
+      success: false,
+      data: [],
+      message: err.message,
+    });
+  }
+};
+
+exports.GetCityDatabyStateId = async (req, res) => {
+  try {
+    const { stateId } = req.params;
+
+    console.log(`Fetching cities for stateId: ${stateId}`);
+
+    const cities = await Data.find({ state: stateId });
+    if (cities.length === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "No cities found" });
+    }
+    res.json({ success: true, city: cities });
+  } catch (error) {
+    console.error("Error fetching cities:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 
 exports.GetCityDataBYID = async (req, res) => {
   try {
     const id = req.params.id;
-    const citydataid = await Data.findById({ _id: id }).populate("region")
-    .populate({
-      path: "country",
-    })
-    .populate({
-      path: "state",
-    });;
+    const citydataid = await Data.findById({ _id: id })
+      .populate("region")
+      .populate({
+        path: "country",
+      })
+      .populate({
+        path: "state",
+      });
     if (!citydataid) {
       return res
         .status(500)
         .json({ statuscode: 500, success: false, messgae: [] });
     }
     //data for given id found
-    res
-      .status(200)
-      .json({
-        statuscode: 200,
-        success: true,
-        data: citydataid,
-        message: `StateDataid ${id} data successfully get`,
-      });
+    res.status(200).json({
+      statuscode: 200,
+      success: true,
+      data: citydataid,
+      message: `StateDataid ${id} data successfully get`,
+    });
   } catch (err) {
     console.error(err);
     console.log(err);

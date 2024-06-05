@@ -28,13 +28,13 @@ app.listen(PORT, () => {
 const dbConnect = require("./config/database");
 dbConnect();
 // Default route
-app.get("/", (req, res) => {
-  res.send("Hello Server");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello Server");
+// });
 //Mount our routes
-app.use("/api", RegionRoutes);
-app.use("/api", CountryRoutes);
-app.use("/api", StateRoutes);
-app.use("/api", CityRoutes);
-app.use("/api", LocalityRoutes);
+app.use("/region", RegionRoutes);
+app.use("/country", CountryRoutes);
+app.use("/state", StateRoutes);
+app.use("/city", CityRoutes);
+app.use("/locality", LocalityRoutes);
 app.use("/api", UserRoutes);
