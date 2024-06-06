@@ -29,11 +29,11 @@ Region
 
 Route
 ##################
-Create -base_url/api/createregiondata
-Get/Fetch Data-base_url/api/getregiondata
-Get/Fetch Data by Id-base_url/api/getregiondataid/:id
-Update - base_url/api/regionupdate/:id
-Delete -base_url/api/regiondelete/:id
+Create -base_url/region/createregiondata
+Get/Fetch Data-base_url/region/getregiondata
+Get/Fetch Data by Id-base_url/region/getregiondataid/:id
+Update - base_url/region/regionupdate/:id
+Delete -base_url/region/regiondelete/:id
 
 Parameter -
 regionname -string,required
@@ -43,11 +43,11 @@ Country
 
 Route
 ##################
-Create -base_url/api/createcountrydata
-Get/Fetch Data-base_url/api/getcountrydata
-Get/Fetch Data by Id-base_url/api/getcountryid/:id
-Update - base_url/api/countryupdate/:id
-Delete -base_url/api/countrydelete/:id
+Create -base_url/country/createcountrydata
+Get/Fetch Data-base_url/country/getcountrydata
+Get/Fetch Data by Id-base_url/country/getcountryid/:id
+Update - base_url/country/countryupdate/:id
+Delete -base_url/country/countrydelete/:id
 
 Parameter -
 countryname -string,required
@@ -58,11 +58,11 @@ State
 
 Route
 ##################
-Create -base_url/api/createstatedata
-Get/Fetch Data-base_url/api/getstatedata
-Get/Fetch Data by Id-base_url/api/getstateid/:id
-Update - base_url/api/stateupdate/:id
-Delete -base_url/api/statedelete/:id
+Create -base_url/state/createstatedata
+Get/Fetch Data-base_url/state/getstatedata
+Get/Fetch Data by Id-base_url/state/getstateid/:id
+Update - base_url/state/stateupdate/:id
+Delete -base_url/state/statedelete/:id
 
 Paramter -
 statename -string,required
@@ -76,11 +76,11 @@ City
 
 Route
 ##################
-Create -base_url/api/createcitydata
-Get/Fetch Data-base_url/api/getcitydata
-Get/Fetch Data by Id-base_url/api/getcityid/:id
-Update -base_url /api/cityupdate/:id
-Delete -base_url/api/citydelete/:id
+Create -base_url/city/createcitydata
+Get/Fetch Data-base_url/city/getcitydata
+Get/Fetch Data by Id-base_url/city/getcityid/:id
+Update -base_url /city/cityupdate/:id
+Delete -base_url/city/citydelete/:id
 
 Parameter -
 cityname -string,required
@@ -94,11 +94,11 @@ Locality
 
 Route
 ##################
-Create -base_url/api/createlocalitydata
-Get/Fetch Data-base_url/api/getlocalitydata
-Get/Fetch Data by Id-base_url/api/getlocalityid/:id
-Update - base_url/api/localityupdate/:id
-Delete -base_url/api/localitydelete/:id
+Create -base_url/locality/createlocalitydata
+Get/Fetch Data-base_url/locality/getlocalitydata
+Get/Fetch Data by Id-base_url/locality/getlocalityid/:id
+Update - base_url/locality/localityupdate/:id
+Delete -base_url/locality/localitydelete/:id
 
 Parameter -
 localityname -string,required
