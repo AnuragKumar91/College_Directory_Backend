@@ -24,8 +24,10 @@ exports.CreateCountry = async (req, res) => {
       statuscode: 200,
       success: true,
       data: response,
+      
       message: "Country created successfully",
     });
+    console.log(response)
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -36,6 +38,16 @@ exports.CreateCountry = async (req, res) => {
     });
   }
 };
+
+
+
+
+
+
+
+
+
+
 
 
 exports.GetCountryData = async (req, res) => {
