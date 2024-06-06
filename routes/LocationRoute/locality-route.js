@@ -8,6 +8,6 @@ const {CreateLocality,GetlocalityData,GetlocalityDataBYID,LocalityUpdate,Localit
 router.post("/createlocalitydata",CreateLocality)
 router.get("/getlocalitydata",GetlocalityData)
 router.get("/getlocalitydatabyid/:id",GetlocalityDataBYID)
-router.post("/localityupdate/:id",LocalityUpdate)
-router.post("/localitydelete/:id",LocalityDelete)
+router.put("/localityupdate/:id",LocalityUpdate)
+router.delete("/localitydelete/:id",LocalityDelete)
  module.exports =router;
