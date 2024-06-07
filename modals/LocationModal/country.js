@@ -12,6 +12,42 @@ const countrySchema = new Schema({
     ref: "region",
     required: true,
   },
+  aboutcountry: {
+    type: String,
+    required: true,
+  },
+  foodculture: {
+    type: String,
+    required: true,
+  },
+  language: {
+    type: String,
+    required: true,
+  },
+  primeminister: {
+    type: String,
+    required: true,
+  },
+  president: {
+    type: String,
+    required: true,
+  },
+  population: {
+    type: String,
+    required: true,
+  },
+  populationpercetage: {
+    type: String,
+    required: true,
+  },
+  // logo: {
+  //   type: String,
+  //   required: true,
+  // },
+  // map: {
+  //   type: String,
+  //   required: true,
+  // },
 });
 
 module.exports = mongoose.model("country", countrySchema);
