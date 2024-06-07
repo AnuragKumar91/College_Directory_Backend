@@ -10,8 +10,8 @@ exports.Signup = async (req, res) => {
   try {
     //get data
 
-    const { name, email, password, role } = req.body;
-    const existingUser = await User.findOne({ email });
+    const { name, email,number , password, confirmpassword } = req.body;
+    const existingUser = await User.findOne({ email,number });
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -35,8 +35,9 @@ exports.Signup = async (req, res) => {
     const user = await User.create({
       name,
       email,
+      number,
       password: hashedPassword,
-      role,
+      confirmpassword:hashedPassword,
     });
     return res.status(200).json({
       success: true,
@@ -113,6 +114,10 @@ exports.Login = async (req, res) => {
     });
   }
 };
+
+
+
+
 exports.ForgetPassword = async (req, res) => {
   const { email } = req.body;
   console.log("ForgetPassword called with email:", email);

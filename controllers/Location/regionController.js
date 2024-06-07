@@ -4,14 +4,14 @@ const Data = require("../../modals/LocationModal/region");
 exports.CreateRegion = async (req, res) => {
   try {
     const { regionname } = req.body;
-      
-  if (!regionname || !regionname.trim()) {
-    return res.status(400).json({
-      statuscode: 400,
-      success: false,
-      message: 'Region name cannot be empty',
-    });
-  }
+
+    if (!regionname || !regionname.trim()) {
+      return res.status(400).json({
+        statuscode: 400,
+        success: false,
+        message: "Region name cannot be empty",
+      });
+    }
     const response = await Data.create({
       regionname,
     });
@@ -49,7 +49,7 @@ exports.GetRegionData = async (req, res) => {
     res.status(500).json({
       statuscode: 200,
       success: false,
-      data: [],
+      response: [],
       message: err.message,
     });
   }
@@ -60,13 +60,11 @@ exports.GetRegionDataBYID = async (req, res) => {
     const id = req.params.id;
     const RegionDataid = await Data.findById({ _id: id });
     if (!RegionDataid) {
-      return res
-        .status(500)
-        .json({
-          statuscode: 200,
-          success: false,
-          messgae: "no data find ny given id",
-        });
+      return res.status(500).json({
+        statuscode: 200,
+        success: false,
+        messgae: "no data find ny given id",
+      });
     }
     //data for given id found
     res.status(200).json({

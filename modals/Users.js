@@ -12,14 +12,23 @@ const userSchema= new mongoose.Schema({
         required:true,
         trim:true
     },
+    number:{
+        type:Number,
+        required:true,
+        trim:true
+    },
     password:{
         type:String,
         required:true,
     },
-    role:{
+    confirmpassword:{
         type:String,
-        enum:["Admin","Student","Visitor"]
-    }
+        required:true,
+    },
+    // role:{
+    //     type:String,
+    //     enum:["Admin","Student","Visitor"]
+    // }
 })
 
 module.exports=mongoose.model("user",userSchema)

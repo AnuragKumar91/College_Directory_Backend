@@ -1,11 +1,10 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 
-const dataSchema=new mongoose.Schema({
-    regionname:{
-    type:String,
+const dataSchema = new mongoose.Schema({
+  regionname: {
+    type: String,
     required: true,
-    },
-   
+  },
 });
 
-module.exports=mongoose.model("region",dataSchema)
+module.exports = mongoose.model("region", dataSchema);
