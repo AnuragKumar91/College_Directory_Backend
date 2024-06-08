@@ -89,10 +89,23 @@ exports.RegionUpdate = async (req, res) => {
   try {
     const { id } = req.params;
     const { regionname } = req.body;
+
+    // Check if regionname is provided
+    if (!regionname.trim()) {
+      return res.status(400).json({
+        statuscode: 400,
+        success: false,
+        data: [],
+        message: "Region name cannot be blank",
+      });
+    }
+
+    // Update the region name
     const regionupdate = await Data.findByIdAndUpdate(
       { _id: id },
       { regionname }
     );
+
     res.status(200).json({
       statuscode: 200,
       success: true,
@@ -101,15 +114,15 @@ exports.RegionUpdate = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    console.log(err);
     res.status(500).json({
-      statuscode: 200,
+      statuscode: 500,
       success: false,
       data: [],
       message: err.message,
     });
   }
 };
+
 
 exports.RegionDelete = async (req, res) => {
   try {
