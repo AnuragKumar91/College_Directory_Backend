@@ -37,10 +37,10 @@ const countrySchema = new Schema({
     required: true,
   },
 
-  status: {
-    type: String,
-    required: true,
-  },
+  // status: {
+  //   type: String,
+  //   required: true,
+  // },
   rank: {
     type: String,
     required: true,

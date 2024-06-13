@@ -1,7 +1,6 @@
 const { json } = require("body-parser");
 const Data = require("../../modals/LocationModal/country");
 const Region = require("../../modals/LocationModal/region");
-const fs = require("fs");
 
 exports.CreateCountry = async (req, res) => {
   try {
@@ -14,7 +13,6 @@ exports.CreateCountry = async (req, res) => {
       primeminister,
       president,
       population,
-      status,
       rank,
       populationByReligion,
       titles,
@@ -68,11 +66,10 @@ exports.CreateCountry = async (req, res) => {
       primeminister,
       president,
       population,
-      status,
-      populationByReligion ,// Ensure this is parsed correctly
+      populationByReligion, // Ensure this is parsed correctly
       titles,
       descriptions,
-      rank,// Ensure this is parsed correctly
+      rank, // Ensure this is parsed correctly
       logo: logoPath,
       map: mapPath,
       flag: flagPath,
