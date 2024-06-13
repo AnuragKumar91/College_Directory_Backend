@@ -46,20 +46,12 @@ const countrySchema = new Schema({
     required: true,
   },
 
-  populationByReligion: [
-    {
-      religion: {
-        type: String,
-        required: true,
-      },
-      percentage: {
-        type: String,
-        required: true,
-      },
+  populationByReligion:  {
+      type: String,
+      required: true,
     },
-  ],
 
-  logo: {
+    logo: {
     type: String,
     required: true,
   },

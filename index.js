@@ -29,7 +29,7 @@ const dbConnect = require("./config/database");
 dbConnect();
 // Default route
 app.get("/", (req, res) => {
-  res.send("Hello Server");
+  res.send("Hello Server From Anurag");
 });
 //Mount our routes
 app.use("/region", RegionRoutes);
