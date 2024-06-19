@@ -3,6 +3,9 @@ const Data = require("../../modals/LocationModal/country");
 const Region = require("../../modals/LocationModal/region");
 
 exports.CreateCountry = async (req, res) => {
+  console.log("Request body:", req.body);
+  console.log("Request files:", req.files);
+
   try {
     const {
       countryname,
@@ -73,14 +76,12 @@ exports.CreateCountry = async (req, res) => {
       logo: logoPath,
       map: mapPath,
       flag: flagPath,
-      commonFields: {
-        metatitle,
-        metadescription,
-        metakeyword,
-        ogtitle,
-        ogdescription,
-        ogimage: ogimagePath, // Ensure ogimage is included
-      },
+      metatitle,
+      metadescription,
+      metakeyword,
+      ogtitle,
+      ogdescription,
+      ogimage: ogimagePath, // Ensure ogimage is included
     });
 
     const response = await country.save();
