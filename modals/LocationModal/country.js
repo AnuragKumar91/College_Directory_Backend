@@ -7,7 +7,6 @@ const countrySchema = new Schema({
     type: String,
     required: true,
     unique: true, // Ensure the country name is unique
-
   },
   region: {
     type: Schema.Types.ObjectId,
@@ -48,12 +47,12 @@ const countrySchema = new Schema({
     required: true,
   },
 
-  populationByReligion:  {
-      type: String,
-      required: true,
-    },
+  populationByReligion: {
+    type: String,
+    required: true,
+  },
 
-    logo: {
+  logo: {
     type: String,
     required: true,
   },
@@ -86,7 +85,7 @@ const countrySchema = new Schema({
     type: String,
     required: true,
   },
-  
+
   metakeyword: {
     type: String,
     required: true,
@@ -99,12 +98,11 @@ const countrySchema = new Schema({
     type: String,
     required: true,
   },
-  
+
   ogimage: {
     type: String,
     required: true,
   },
- 
 });
 
 module.exports = mongoose.model("country", countrySchema);

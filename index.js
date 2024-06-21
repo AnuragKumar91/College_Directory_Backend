@@ -9,6 +9,9 @@ const CountryRoutes = require("./routes/LocationRoute/country-route");
 const StateRoutes = require("./routes/LocationRoute/state-route");
 const CityRoutes = require("./routes/LocationRoute/city-route");
 const LocalityRoutes = require("./routes/LocationRoute/locality-route");
+const DegreeRoutes=require("./routes/CourseRoute/degree-route")
+const StreamRoutes=require("./routes/CourseRoute/stream-route")
+
 const UserRoutes = require("./routes/user-route");
 app.use(cors());
 
@@ -37,4 +40,6 @@ app.use("/country", CountryRoutes);
 app.use("/state", StateRoutes);
 app.use("/city", CityRoutes);
 app.use("/locality", LocalityRoutes);
+app.use("/degree",DegreeRoutes)
+app.use("/stream",StreamRoutes)
 app.use("/api", UserRoutes);

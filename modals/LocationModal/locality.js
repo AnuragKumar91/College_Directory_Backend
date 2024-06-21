@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 const localitySchema=new Schema({
     localityname:{
         type:String,
-        required: true
+        required: true,
+        unique: true,
     },
     city: {
         type: Schema.Types.ObjectId,

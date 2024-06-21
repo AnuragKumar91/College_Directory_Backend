@@ -4,6 +4,7 @@ const dataSchema = new mongoose.Schema({
   regionname: {
     type: String,
     required: true,
+    unique: true,
   },
 });
 

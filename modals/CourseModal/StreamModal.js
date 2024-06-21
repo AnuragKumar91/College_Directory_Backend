@@ -1,44 +1,18 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose =require("mongoose")
 
-const stateSchema = new Schema({
-  statename: {
+const Schema=mongoose.Schema
+
+const streamSchema=new Schema({
+      streamname: {
     type: String,
     required: true,
     unique: true,
   },
-
-  country: {
-    type: Schema.Types.ObjectId,
-    ref: "country",
-    required: true,
-  },
-  region: {
-    type: Schema.Types.ObjectId,
-    ref: "region",
-    required: true,
-  },
-  aboutstate: {
+  shortdescription: {
     type: String,
     required: true,
   },
-  population: {
-    type: String,
-    required: true,
-  },
-  chiefminister: {
-    type: String,
-    required: true,
-  },
-  rank: {
-    type: String,
-    required: true,
-  },
-  map: {
-    type: String,
-    required: true,
-  },
-  logo: {
+  longdescription: {
     type: String,
     required: true,
   },
@@ -54,6 +28,14 @@ const stateSchema = new Schema({
       required: false,
     },
   ],
+  icon: {
+    type: String,
+    required: true,
+  },
+  banner: {
+    type: String,
+    required: true,
+  },
   metatitle: {
     type: String,
     required: true,
@@ -75,10 +57,10 @@ const stateSchema = new Schema({
     type: String,
     required: true,
   },
+
   ogimage: {
     type: String,
     required: true,
   },
-});
-
-module.exports = mongoose.model("state", stateSchema);
+})
+module.exports = mongoose.model("stream", streamSchema);
