@@ -6,7 +6,26 @@ const State = require("../../modals/LocationModal/state");
 
 exports.CreateCity = async (req, res) => {
   try {
-    const { cityname, stateId, countryId, regionId } = req.body;
+    const {
+      cityname,
+      stateId,
+      countryId,
+      regionId,
+      aboutcity,
+      mla,
+      population,
+      rank,
+      titles,
+      descriptions,
+      metatitle,
+      metadescription,
+      metakeyword,
+      ogtitle,
+      ogdescription,
+    } = req.body;
+
+    // Ensure the type is set to "city"
+    req.body.type = "city";
 
     //validate that the state exist
     const state = await State.findById(stateId);
@@ -37,12 +56,42 @@ exports.CreateCity = async (req, res) => {
         message: [],
       });
     }
+    // Handle file uploads
+
+    let mapPath = null;
+    let logoPath = null;
+    let ogimagePath = null;
+
+    if (req.files && req.files.map) {
+      mapPath = req.files.map[0].path;
+    }
+    if (req.files && req.files.logo) {
+      logoPath = req.files.logo[0].path;
+    }
+
+    if (req.files && req.files.ogimage) {
+      ogimagePath = req.files.ogimage[0].path;
+    }
 
     const city = new Data({
       cityname,
       state: stateId,
       country: countryId,
       region: regionId,
+      map: mapPath,
+      logo: logoPath,
+      ogimage: ogimagePath,
+      aboutcity,
+      mla,
+      population,
+      rank,
+      titles,
+      descriptions,
+      metatitle,
+      metadescription,
+      metakeyword,
+      ogtitle,
+      ogdescription,
     });
     const savedCity = await city.save();
 

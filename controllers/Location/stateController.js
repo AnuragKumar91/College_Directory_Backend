@@ -5,7 +5,35 @@ const Region = require("../../modals/LocationModal/region");
 
 exports.CreateState = async (req, res) => {
   try {
-    const { statename, countryId, regionId } = req.body;
+    const {
+      statename,
+      countryId,
+      regionId,
+      titles,
+      descriptions,
+      aboutstate,
+      population,
+      chiefminister,
+      rank,
+
+      metatitle,
+      metadescription,
+      metakeyword,
+      ogtitle,
+      ogdescription,
+    } = req.body;
+
+    // Ensure the type is set to "state"
+    req.body.type = "state";
+    const existingState = await Data.findOne({ statename });
+    if (existingState) {
+      return res.status(400).json({
+        statuscode: 400,
+        success: false,
+        message: "State name already exists",
+        data: [],
+      });
+    }
 
     // Validate that the country exists
 
@@ -28,7 +56,42 @@ exports.CreateState = async (req, res) => {
       });
     }
 
-    const state = new Data({ statename, country: countryId, region: regionId });
+    // Handle file uploads
+
+    let mapPath = null;
+    let logoPath = null;
+    let ogimagePath = null;
+
+    if (req.files && req.files.map) {
+      mapPath = req.files.map[0].path;
+    }
+    if (req.files && req.files.logo) {
+      logoPath = req.files.logo[0].path;
+    }
+
+    if (req.files && req.files.ogimage) {
+      ogimagePath = req.files.ogimage[0].path;
+    }
+
+    const state = new Data({
+      statename,
+      country: countryId,
+      region: regionId,
+      map: mapPath,
+      logo: logoPath,
+      ogimage: ogimagePath,
+      aboutstate,
+      population,
+      chiefminister,
+      rank,
+      titles,
+      descriptions,
+      metatitle,
+      metadescription,
+      metakeyword,
+      ogtitle,
+      ogdescription,
+    });
     const savedState = await state.save();
 
     res.status(200).json({
@@ -47,6 +110,18 @@ exports.CreateState = async (req, res) => {
     });
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
 
 exports.GetStateData = async (req, res) => {
   try {

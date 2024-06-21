@@ -27,6 +27,19 @@ exports.CreateCountry = async (req, res) => {
       ogdescription,
     } = req.body;
 
+    // Ensure the type is set to "country"
+    req.body.type = "country";
+    // Check if the country name already exists
+    const existingCountry = await Data.findOne({ countryname });
+    if (existingCountry) {
+      return res.status(400).json({
+        statuscode: 400,
+        success: false,
+        message: "Country name already exists",
+        data: [],
+      });
+    }
+
     // Validate that the region exists
     const region = await Region.findById(regionId);
     if (!region) {
@@ -69,10 +82,10 @@ exports.CreateCountry = async (req, res) => {
       primeminister,
       president,
       population,
-      populationByReligion, // Ensure this is parsed correctly
+      populationByReligion,
       titles,
       descriptions,
-      rank, // Ensure this is parsed correctly
+      rank,
       logo: logoPath,
       map: mapPath,
       flag: flagPath,
@@ -81,7 +94,7 @@ exports.CreateCountry = async (req, res) => {
       metakeyword,
       ogtitle,
       ogdescription,
-      ogimage: ogimagePath, // Ensure ogimage is included
+      ogimage: ogimagePath,
     });
 
     const response = await country.save();

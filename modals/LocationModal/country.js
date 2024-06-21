@@ -6,6 +6,8 @@ const countrySchema = new Schema({
   countryname: {
     type: String,
     required: true,
+    unique: true, // Ensure the country name is unique
+
   },
   region: {
     type: Schema.Types.ObjectId,
