@@ -1,13 +1,9 @@
-const stream = require("../../modals/CourseModal/StreamModal");
+const Exam = require("../../modals/CourseModal/ExamModal");
 
-exports.CreateStream = async (req, res) => {
- 
-
-
-
+exports.CreateExam = async (req, res) => {
   try {
     const {
-      streamname,
+      examname,
       shortdescription,
       longdescription,
       titles,
@@ -22,13 +18,13 @@ exports.CreateStream = async (req, res) => {
     req.body.type = "degree";
     //check if degreename is already exsit or not
 
-    const existingStream = await stream.findOne({ streamname });
-    if (existingStream) {
+    const existingExam = await Exam.findOne({ examname });
+    if (existingExam) {
       return res.send(400).json({
         status: 400,
         success: false,
         response: [],
-        message: "Stream name already exist",
+        message: "Exam name already exist",
       });
     }
     // Handle file uploads
@@ -46,8 +42,8 @@ exports.CreateStream = async (req, res) => {
       ogimagePath = req.files.ogimage[0].path;
     }
 
-    const StreamData = new stream({
-      streamname,
+    const ExamData = new Exam({
+      examname,
       shortdescription,
       longdescription,
       titles,
@@ -57,16 +53,16 @@ exports.CreateStream = async (req, res) => {
       metakeyword,
       ogtitle,
       ogdescription,
-     icon :iconPath ,
-     banner:bannerPath,
-     ogimage:ogimagePath,
+      icon: iconPath,
+      banner: bannerPath,
+      ogimage: ogimagePath,
     });
-    const response = await StreamData.save();
+    const response = await ExamData.save();
     res.status(200).json({
       statuscode: 200,
       success: true,
       response: response,
-      message: "Stream created successfully",
+      message: "Exam created successfully",
     });
   } catch (err) {
     console.error(err);
@@ -78,39 +74,37 @@ exports.CreateStream = async (req, res) => {
       message: err.message,
     });
   }
+};
 
+
+exports.GetExamData =async(req,res)=>{
+    try{
+   const response =await Exam.find({})
+   res.status(200).json({
+    statuscode: 200,
+    success: true,
+    response: response,
+    message: "Entire Exam data is Fetch",
+  });
+} catch (err) {
+  console.error(err);
+  console.log(err);
+  res.status().json({
+    success: false,
+    statuscode: 500,
+    response: [],
+    message: err.message,
+  });
 }
-
-  
-exports.GetStreamData=async(req,res)=>{
-  try{
-    const response =await stream.find({})
-    res.status(200).json({
-  statuscode:200,
-  success: true,
-        response: response,
-        message: "Entire Stream data is Fetch",
-
-    })
-
-  }catch (err) {
-    console.error(err);
-    console.log(err);
-    res.status().json({
-      success: false,
-      statuscode: 500,
-      response: [],
-      message: err.message,
-    });
-  }
 }
 
 
-exports.StreamUpdate = async (req, res) => {
+
+exports.ExamUpdate = async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      streamname,
+      examname,
       shortdescription,
       longdescription,
       titles,
@@ -124,7 +118,7 @@ exports.StreamUpdate = async (req, res) => {
 
     // Handle file uploads
     let updateData = {
-      streamname,
+      examname,
       shortdescription,
       longdescription,
       titles,
@@ -146,26 +140,26 @@ exports.StreamUpdate = async (req, res) => {
       updateData.ogimage = req.files.ogimage[0].path;
     }
 
-    const updatestream = await Degree.findByIdAndUpdate(
+    const updateexam = await Degree.findByIdAndUpdate(
       { _id: id },
       updateData,
       { new: true }
     );
 
-    if (!updatestream) {
+    if (!updateexam) {
       return res.status(404).json({
         statuscode: 404,
         success: false,
         response: [],
-        message: "stream not found",
+        message: "Degree not found",
       });
     }
 
     res.status(200).json({
       statuscode: 200,
       success: true,
-      response: updatedegree,
-      message: "Update stream successfully",
+      response: updateexam,
+      message: "Update degree successfully",
     });
   } catch (err) {
     console.error(err);
@@ -178,25 +172,31 @@ exports.StreamUpdate = async (req, res) => {
   }
 };
 
-exports.StreamDelete=async(req,res)=>{
-  try{
-  const{id}=req.params;
-  await stream.findByIdAndDelete(id)
-  res.status(200).json({
-    success:true,
-    statuscode:200,
-    message: "Stream Data deleted",
-})
 
-}catch (err) {
-console.error(err);
-console.log(err);
-res.status(500).json({
-  statuscode: 500,
-  success: false,
-  response: [],
-  message: err.message,
-});
-}
+
+
+
+
+exports.DeleteExam=async(req,res)=>{
+    try{
+        const {id}=req.params;
+        await Course.findByIdAndDelete(id)
  
-}
+        res.status(200).json({
+            success:true,
+            statuscode:200,
+            message: "Exam Data deleted",
+        })
+        
+        }catch (err) {
+        console.error(err);
+        console.log(err);
+        res.status(500).json({
+          statuscode: 500,
+          success: false,
+          response: [],
+          message: err.message,
+        });
+        }
+};
+

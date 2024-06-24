@@ -9,17 +9,13 @@ const CountryRoutes = require("./routes/LocationRoute/country-route");
 const StateRoutes = require("./routes/LocationRoute/state-route");
 const CityRoutes = require("./routes/LocationRoute/city-route");
 const LocalityRoutes = require("./routes/LocationRoute/locality-route");
-const DegreeRoutes=require("./routes/CourseRoute/degree-route")
-const StreamRoutes=require("./routes/CourseRoute/stream-route")
-
+const DegreeRoutes = require("./routes/CourseRoute/degree-route");
+const StreamRoutes = require("./routes/CourseRoute/stream-route");
+const CourseRoutes = require("./routes/CourseRoute/course-route");
+const SpecializationRoutes = require("./routes/CourseRoute/specialization-route");
+const ExamRoutes = require("./routes/CourseRoute/exam-route");
 const UserRoutes = require("./routes/user-route");
 app.use(cors());
-
-// app.use(express.static(path.join(__dirname, 'client/build')));
-
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-// });
 
 const PORT = process.env.PORT || 6000;
 app.use(express.json());
@@ -40,6 +36,9 @@ app.use("/country", CountryRoutes);
 app.use("/state", StateRoutes);
 app.use("/city", CityRoutes);
 app.use("/locality", LocalityRoutes);
-app.use("/degree",DegreeRoutes)
-app.use("/stream",StreamRoutes)
+app.use("/degree", DegreeRoutes);
+app.use("/stream", StreamRoutes);
+app.use("/course", CourseRoutes);
+app.use("/specialization", SpecializationRoutes);
+app.use("/exam", ExamRoutes);
 app.use("/api", UserRoutes);
