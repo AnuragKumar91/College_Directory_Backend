@@ -2,14 +2,24 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const courseSchema = new Schema({
+  // stream: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "stream",
+  //   required: true,
+  // },
+  // degree: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "degree",
+  //   required: true,
+  // },
   stream: {
     type: Schema.Types.ObjectId,
-    ref: "stream",
+    ref: 'stream', // Make sure 'Stream' matches the model name of your stream collection
     required: true,
   },
   degree: {
     type: Schema.Types.ObjectId,
-    ref: "degree",
+    ref: 'degree', // Make sure 'Degree' matches the model name of your degree collection
     required: true,
   },
   coursename: {
@@ -46,6 +56,10 @@ const courseSchema = new Schema({
     required: true,
   },
   metatitle: {
+    type: String,
+    required: true,
+  },
+  rank: {
     type: String,
     required: true,
   },

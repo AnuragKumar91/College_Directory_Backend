@@ -54,6 +54,10 @@ const specializationSchema = new Schema({
     type: String,
     required: true,
   },
+  rank: {
+    type: String,
+    required: true,
+  },
   metadescription: {
     type: String,
     required: true,

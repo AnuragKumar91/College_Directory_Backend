@@ -16,15 +16,15 @@ exports.CreateStream = async (req, res) => {
       metadescription,
       metakeyword,
       ogtitle,
+      rank,
       ogdescription,
     } = req.body;
     // Ensure the type is set to "degree"
-    req.body.type = "degree";
     //check if degreename is already exsit or not
 
     const existingStream = await stream.findOne({ streamname });
     if (existingStream) {
-      return res.send(400).json({
+      return res.status(400).json({
         status: 400,
         success: false,
         response: [],
@@ -55,6 +55,7 @@ exports.CreateStream = async (req, res) => {
       metatitle,
       metadescription,
       metakeyword,
+      rank,
       ogtitle,
       ogdescription,
      icon :iconPath ,
@@ -106,6 +107,21 @@ exports.GetStreamData=async(req,res)=>{
 }
 
 
+exports.GetStreamDatabyId=async(req,res)=>{
+  try{
+    const {id}=req.params;
+    const response=await stream.findById(id)
+    res.status(200).json({
+      statuscode: 200,
+      success: true,
+      response: response,
+      message: ` Stream data is Fetch by ${id} `,
+    });
+  } catch (error) {
+    res.status(500).send("Server Error");
+  }
+};
+
 exports.StreamUpdate = async (req, res) => {
   try {
     const { id } = req.params;
@@ -117,6 +133,7 @@ exports.StreamUpdate = async (req, res) => {
       descriptions,
       metatitle,
       metadescription,
+      rank,
       metakeyword,
       ogtitle,
       ogdescription,
@@ -129,6 +146,7 @@ exports.StreamUpdate = async (req, res) => {
       longdescription,
       titles,
       descriptions,
+      rank,
       metatitle,
       metadescription,
       metakeyword,
@@ -181,9 +199,10 @@ exports.StreamUpdate = async (req, res) => {
 exports.StreamDelete=async(req,res)=>{
   try{
   const{id}=req.params;
-  await stream.findByIdAndDelete(id)
+   const response= await stream.findByIdAndDelete(id)
   res.status(200).json({
     success:true,
+    response:response,
     statuscode:200,
     message: "Stream Data deleted",
 })

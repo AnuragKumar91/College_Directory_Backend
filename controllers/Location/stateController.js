@@ -147,6 +147,9 @@ exports.GetStateData = async (req, res) => {
   }
 };
 
+
+
+
 exports.GetStateDatabyCountryId = async (req, res) => {
   try {
     const { countryId } = req.params;

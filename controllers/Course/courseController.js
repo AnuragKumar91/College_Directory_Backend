@@ -2,93 +2,128 @@ const Course = require("../../modals/CourseModal/CourseModal");
 const Stream = require("../../modals/CourseModal/StreamModal");
 const Degree = require("../../modals/CourseModal/DegreeModal");
 
-exports.CreateCourse = async (req, res) => {
+  exports.CreateCourse = async (req, res) => {
+    try {
+      const {
+        streamId,
+        degreeId,
+        coursename,
+        rank,
+        shortdescription,
+        longdescription,
+        titles,
+        descriptions,
+        metatitle,
+        metadescription,
+        metakeyword,
+        ogtitle,
+        ogdescription,
+      } = req.body;
+
+      // Check if coursename already exists
+      const existingCourse = await Course.findOne({ coursename });
+      if (existingCourse) {
+        return res.status(400).json({
+          statuscode: 400,
+          success: false,
+          message: "Course name already exists",
+          data: [],
+        });
+      }
+
+      // Validate that the stream id exists
+      const stream = await Stream.findById(streamId);
+      if (!stream) {
+        return res.status(404).json({
+          statuscode: 404,
+          success: false,
+          message: "Stream not found",
+        });
+      }
+
+      // Validate that the degree id exists
+      const degree = await Degree.findById(degreeId);
+      if (!degree) {
+        return res.status(404).json({
+          statuscode: 404,
+          success: false,
+          message: "Degree not found",
+        });
+      }
+
+      // Handle file uploads
+      let iconPath = null;
+      let bannerPath = null;
+      let ogimagePath = null;
+
+      if (req.files && req.files.icon) {
+        iconPath = req.files.icon[0].path;
+      }
+      if (req.files && req.files.banner) {
+        bannerPath = req.files.banner[0].path;
+      }
+      if (req.files && req.files.ogimage) {
+        ogimagePath = req.files.ogimage[0].path;
+      }
+
+      const CourseData = new Course({
+        stream: streamId,
+        degree: degreeId,
+        coursename,
+        rank,
+        shortdescription,
+        longdescription,
+        titles,
+        descriptions,
+        metatitle,
+        metadescription,
+        metakeyword,
+        ogtitle,
+        ogdescription,
+        icon: iconPath,
+        banner: bannerPath,
+        ogimage: ogimagePath,
+      });
+
+      const response = await CourseData.save();
+      res.status(200).json({
+        statuscode: 200,
+        success: true,
+        response: response,
+        message: "Course created successfully",
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({
+        success: false,
+        statuscode: 500,
+        response: [],
+        message: err.message,
+      });
+    }
+  };
+
+
+
+
+exports.GetCourseData = async (req, res) => {
   try {
-    const {
-      streamId,
-      degreeId,
-      coursename,
-      shortdescription,
-      longdescription,
-      titles,
-      descriptions,
-      metatitle,
-      metadescription,
-      metakeyword,
-      ogtitle,
-      ogdescription,
-    } = req.body;
+    const response = await Course.find({})
+      .populate({
+        path: 'stream',
+        // select: '_id' // Only select the _id field of the stream document
+      })
+      .populate({
+        path: 'degree',
+        // select: '_id' // Only select the _id field of the degree document
+      })
+      .exec();
 
-    // Check if coursename already exists
-    const existingCourse = await Course.findOne({ coursename });
-    if (existingCourse) {
-      return res.status(400).json({
-        statuscode: 400,
-        success: false,
-        message: "Course name already exists",
-        data: [],
-      });
-    }
-
-    // Validate that the stream id exists
-    const stream = await Stream.findById(streamId);
-    if (!stream) {
-      return res.status(404).json({
-        statuscode: 404,
-        success: false,
-        message: "Stream not found",
-      });
-    }
-
-    // Validate that the degree id exists
-    const degree = await Degree.findById(degreeId);
-    if (!degree) {
-      return res.status(404).json({
-        statuscode: 404,
-        success: false,
-        message: "Degree not found",
-      });
-    }
-
-    // Handle file uploads
-    let iconPath = null;
-    let bannerPath = null;
-    let ogimagePath = null;
-
-    if (req.files && req.files.icon) {
-      iconPath = req.files.icon[0].path;
-    }
-    if (req.files && req.files.banner) {
-      bannerPath = req.files.banner[0].path;
-    }
-    if (req.files && req.files.ogimage) {
-      ogimagePath = req.files.ogimage[0].path;
-    }
-
-    const CourseData = new Course({
-      stream: streamId,
-      degree: degreeId,
-      coursename,
-      shortdescription,
-      longdescription,
-      titles,
-      descriptions,
-      metatitle,
-      metadescription,
-      metakeyword,
-      ogtitle,
-      ogdescription,
-      icon: iconPath,
-      banner: bannerPath,
-      ogimage: ogimagePath,
-    });
-
-    const response = await CourseData.save();
     res.status(200).json({
       statuscode: 200,
       success: true,
       response: response,
-      message: "Course created successfully",
+      message: 'Entire Course data is Fetch',
     });
   } catch (err) {
     console.error(err);
@@ -101,26 +136,28 @@ exports.CreateCourse = async (req, res) => {
   }
 };
 
-exports.GetCourseData = async (req, res) => {
-  try {
-    const response = await Course.find({});
+
+exports.GetCourseDatabyId=async(req,res)=>{
+  try{
+    const {id} =req.params
+    console.log("courseid");
+    console.log(id);
+    
+    const response = await Course.findById(id);
+    console.log(response)
     res.status(200).json({
       statuscode: 200,
       success: true,
       response: response,
-      message: "Entire Course data is Fetch",
+      message: " Course data is Fetch by id ",
     });
-  } catch (err) {
-    console.error(err);
-    console.log(err);
-    res.status().json({
-      success: false,
-      statuscode: 500,
-      response: [],
-      message: err.message,
-    });
+  } catch (error) {
+    res.status(500).send("Server Error");
   }
 };
+
+
+
 
 exports.UpdateCourse = async (req, res) => {
     try {
@@ -129,6 +166,7 @@ exports.UpdateCourse = async (req, res) => {
         streamId,
         degreeId,
         coursename,
+        rank,
         shortdescription,
         longdescription,
         titles,
@@ -167,6 +205,7 @@ exports.UpdateCourse = async (req, res) => {
         coursename,
         shortdescription,
         longdescription,
+        rank,
         titles,
         descriptions,
         metatitle,

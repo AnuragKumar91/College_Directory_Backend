@@ -7,6 +7,7 @@ exports.CreateExam = async (req, res) => {
       shortdescription,
       longdescription,
       titles,
+      rank,
       descriptions,
       metatitle,
       metadescription,
@@ -46,6 +47,7 @@ exports.CreateExam = async (req, res) => {
       examname,
       shortdescription,
       longdescription,
+      rank,
       titles,
       descriptions,
       metatitle,
@@ -107,6 +109,7 @@ exports.ExamUpdate = async (req, res) => {
       examname,
       shortdescription,
       longdescription,
+      rank,
       titles,
       descriptions,
       metatitle,
@@ -121,6 +124,7 @@ exports.ExamUpdate = async (req, res) => {
       examname,
       shortdescription,
       longdescription,
+      rank,
       titles,
       descriptions,
       metatitle,
@@ -151,7 +155,7 @@ exports.ExamUpdate = async (req, res) => {
         statuscode: 404,
         success: false,
         response: [],
-        message: "Degree not found",
+        message: "Exam not found",
       });
     }
 
@@ -159,7 +163,7 @@ exports.ExamUpdate = async (req, res) => {
       statuscode: 200,
       success: true,
       response: updateexam,
-      message: "Update degree successfully",
+      message: "Update Exam successfully",
     });
   } catch (err) {
     console.error(err);

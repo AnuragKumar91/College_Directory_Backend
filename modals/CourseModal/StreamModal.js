@@ -1,9 +1,9 @@
-const mongoose =require("mongoose")
+const mongoose = require("mongoose");
 
-const Schema=mongoose.Schema
+const Schema = mongoose.Schema;
 
-const streamSchema=new Schema({
-      streamname: {
+const streamSchema = new Schema({
+  streamname: {
     type: String,
     required: true,
     unique: true,
@@ -40,6 +40,10 @@ const streamSchema=new Schema({
     type: String,
     required: true,
   },
+  rank: {
+    type: String,
+    required: true,
+  },
   metadescription: {
     type: String,
     required: true,
@@ -62,5 +66,5 @@ const streamSchema=new Schema({
     type: String,
     required: true,
   },
-})
+});
 module.exports = mongoose.model("stream", streamSchema);

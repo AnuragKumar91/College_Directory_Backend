@@ -5,7 +5,8 @@ const router = express.Router();
 const {
   CreateCourse,
   GetCourseData,
-  UpdateCourse
+  UpdateCourse,
+  GetCourseDatabyId
 } = require("../../controllers/Course/courseController");
 
 router.post(
@@ -20,6 +21,7 @@ router.post(
 
 
 router.get("/getcoursedata", GetCourseData);
+router.get("/updatecoursebyid/:id",GetCourseDatabyId)
 // Route to update a course
 router.put(
     "/updatecourse/:id",
